@@ -1,4 +1,4 @@
-package firstClass;
+package Smile;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -30,7 +30,7 @@ public class Smile extends JFrame  {
 				while(true){
 					s.repaint();
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(20);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
