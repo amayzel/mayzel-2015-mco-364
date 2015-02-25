@@ -10,6 +10,7 @@ public class SnakeMain extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	private int direction;
+	private World w;
 	public SnakeMain() {
 		setSize(620,640);
 		setTitle("SNAKE");
@@ -19,7 +20,8 @@ public class SnakeMain extends JFrame implements KeyListener {
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
-		WorldComponent wc = new WorldComponent(new World());
+		w = new World();
+		WorldComponent wc = new WorldComponent(w);
 		contentPane.add(wc,BorderLayout.CENTER);
 		wc.addKeyListener(this);
 		wc.setFocusable(true);
