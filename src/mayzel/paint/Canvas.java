@@ -21,6 +21,9 @@ public class Canvas extends JPanel {
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		graphics.drawImage(image, 0, 0, null);
+		//sned in temporary graphics
+		//listener.draw(graphics);
+		
 	}
 	
 	public BufferedImage getImage(){

@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 
 public class PaintFrame extends JFrame {
 
+	private ModeButton pencilButton;
+	private ModeButton rectangleButton;
 	public PaintFrame() {
 
 		setSize(800, 600);
@@ -28,7 +30,7 @@ public class PaintFrame extends JFrame {
 		String typeChoice= "rect.jpg";
 
 		// default is black
-		DrawListener listener = new DrawListener(canvas, Color.BLACK, typeChoice);
+		BrushListener listener = new DrawListener(canvas/*, Color.BLACK, typeChoice*/);
 		canvas.addMouseListener(listener);
 		canvas.addMouseMotionListener(listener);
 
@@ -41,7 +43,7 @@ public class PaintFrame extends JFrame {
 		Color colorArray[] = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE,
 				new Color(153, 51, 255), Color.PINK, Color.MAGENTA, Color.BLACK, Color.GRAY, Color.WHITE };
 
-		ChooseColorListener cclistener = new ChooseColorListener(canvas, colorButtons, typeChoice);
+		ChooseColorListener cclistener = new ChooseColorListener(canvas, colorButtons, typeChoice, listener);
 
 		for (int i = 0; i < colorButtons.length; i++) {
 			for (int j = 0; j < colorButtons[i].length; j++) {

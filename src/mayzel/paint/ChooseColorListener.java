@@ -10,11 +10,13 @@ public class ChooseColorListener implements ActionListener {
 	private Canvas canvas;
 	private JButton[][] colorButtons;
 	private String typeChoice;
+	private BrushListener listener;
 	
-	public ChooseColorListener(Canvas canvas, JButton [][] colorButtons, String typeChoice) {
+	public ChooseColorListener(Canvas canvas, JButton [][] colorButtons, String typeChoice, BrushListener listener) {
 		this.canvas = canvas;
 		this.colorButtons = colorButtons;
 		this.typeChoice = typeChoice;
+		this.listener = listener;
 	}
 	
 	
@@ -23,7 +25,8 @@ public class ChooseColorListener implements ActionListener {
 			for (int i = 0; i < colorButtons.length; i++) {
 				for (int j = 0; j < colorButtons[i].length; j++) {
 					if (event.getSource().equals(colorButtons[i][j])) {
-						DrawListener listener = new DrawListener(canvas, colorButtons[i][j].getBackground(), typeChoice);
+						BrushListener listener = new DrawListener(canvas/*, colorButtons[i][j].getBackground(), typeChoice*/);
+						//canvas.setBrushListener();
 						canvas.addMouseListener(listener);
 						canvas.addMouseMotionListener(listener);
 						
