@@ -1,5 +1,6 @@
 package mayzel.paint;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,6 +12,9 @@ public abstract class BrushListener implements MouseListener, MouseMotionListene
 	protected int startY;
 	protected int lastX;
 	protected int lastY;
+	protected int tempX;
+	protected int tempY;
+	private Graphics g;
 	private Canvas canvas;
 	public BrushListener(Canvas canvas) {
 		this.canvas = canvas;
@@ -20,37 +24,35 @@ public abstract class BrushListener implements MouseListener, MouseMotionListene
 	public void mouseDragged(MouseEvent event) {
 		lastX = event.getX();
 		lastY = event.getY();
+		canvas.repaint();
 	}
-
-	@Override
-	public void mouseMoved(MouseEvent event) {
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent event) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent event) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent event) {
-	}
-
+	
 	@Override
 	public void mousePressed(MouseEvent event) {
 		startX = event.getX();
 		startY = event.getY();
+		tempX = startX;
+		tempY = startY;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent event) {
-		draw(canvas.getImage().getGraphics());
+		Graphics g = canvas.getImage().getGraphics();
+		g.setColor(canvas.getColor());
+		draw(g);
+		
 	}
 	
 	
 	abstract public void draw(Graphics g);
 	
-	
+
+	@Override
+	public void mouseMoved(MouseEvent event) {}
+	@Override
+	public void mouseClicked(MouseEvent event) {}
+	@Override
+	public void mouseEntered(MouseEvent event) {}
+	@Override
+	public void mouseExited(MouseEvent event) {}
 }

@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 public class Canvas extends JPanel {
 
 	private BufferedImage image;
+	private Color color = Color.BLACK;
+	private BrushListener listener = new PencilListener(this);
 	
 	public Canvas(int width, int height) {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -20,15 +22,28 @@ public class Canvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
+		graphics.setColor(color);
 		graphics.drawImage(image, 0, 0, null);
-		//sned in temporary graphics
-		//listener.draw(graphics);
-		
+		if(listener !=null){
+			listener.draw(graphics);
+		}
 	}
 	
 	public BufferedImage getImage(){
 		return image;
 	}
 	
+	public void setColor(Color color){
+		this.color = color;
+	}
+	
+	public Color getColor(){
+		return color;
+	}
+	
+	public void setBrushListener(BrushListener listener) {
+		this.listener = listener;
+	}
+
 
 }
