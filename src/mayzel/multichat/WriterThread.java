@@ -10,17 +10,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class WriterThread extends Thread {
 
-	private LinkedBlockingQueue<String> threadList;
+	private LinkedBlockingQueue<String> messages;
 	private ArrayList<Socket> sockets;
-	public WriterThread(LinkedBlockingQueue threadList, ArrayList sockets) {
-		this.threadList = threadList;
+	public WriterThread(LinkedBlockingQueue<String> messages, ArrayList<Socket> sockets) {
+		this.messages = messages;
 		this.sockets = sockets;
 	}
 	
 	public void run(){
 		while(true){
 			try {
-				String message = threadList.take();
+				String message = messages.take();
 				writeToSocket(message);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

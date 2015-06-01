@@ -65,6 +65,13 @@ public class PaintFrame extends JFrame {
 		add(shapes, BorderLayout.NORTH);
 		shapes.setLayout(new GridLayout(1, 2));
 		
+		//default pencil
+		BrushListener defaultPenc = new PencilListener(canvas);
+		canvas.setBrushListener(defaultPenc);
+		canvas.addMouseListener(defaultPenc);
+		canvas.addMouseMotionListener(defaultPenc);
+	
+		
 		pencilButton = new ModeButton(new PencilListener(canvas));
 		rectangleButton = new ModeButton(new RectangleListener(canvas));
 		

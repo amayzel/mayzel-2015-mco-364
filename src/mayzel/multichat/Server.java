@@ -12,23 +12,23 @@ import javax.swing.JTextField;
 
 import network.SocketThread;
 
-public class Server{
+public class Server implements ReaderListener{
 
+	private LinkedBlockingQueue<String> messages;
+	private ArrayList<Socket> socketList;
 	public Server() {
 		try {
-			ArrayList<Socket> socketList = new ArrayList<Socket>();
-			LinkedBlockingQueue<String> threadList = new LinkedBlockingQueue<String>();
+			socketList = new ArrayList<Socket>();
+			messages = new LinkedBlockingQueue<String>();
 			ServerSocket serverSocket = new ServerSocket(4433);
-			String t;
-			WriterThread writerThread = new WriterThread(threadList, socketList);
+			WriterThread writerThread = new WriterThread(messages, socketList);
+			writerThread.start();
 			while (true){
 				Socket socket = serverSocket.accept();
 				socketList.add(socket);
-				ReaderThread rt = new ReaderThread(socket, null);
-				//String message = null;
-				//t = message;
-				//threadList.add(t);
-				//t.start();
+				ReaderThread rt = new ReaderThread(socket, this);
+				rt.start();
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -37,6 +37,21 @@ public class Server{
 	
 	public static void main(String[] args){
 		Server server = new Server();
+	}
+
+	@Override
+	public void onLineRead(String line) {
+		messages.add(line);
+		
+	}
+
+	@Override
+	public void onCloseSocket(Socket socket) {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

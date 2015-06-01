@@ -18,11 +18,9 @@ public class ReaderThread extends Thread {
 	public void run(){
 		try {
 			InputStream in = socket.getInputStream();
-			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			
 			String line;
-			
 			while((line = reader.readLine()) != null){
 				listener.onLineRead(line);
 			}
