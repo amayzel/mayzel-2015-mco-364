@@ -13,6 +13,7 @@ public abstract class BrushListener implements MouseListener, MouseMotionListene
 	protected int lastY;
 	private Graphics g;
 	private Canvas canvas;
+	
 	public BrushListener(Canvas canvas) {
 		this.canvas = canvas;
 	}
@@ -34,8 +35,8 @@ public abstract class BrushListener implements MouseListener, MouseMotionListene
 	public void mouseReleased(MouseEvent event) {
 		Graphics g = canvas.getImage().getGraphics();
 		g.setColor(canvas.getColor());
-		draw(g);
-		
+		BrushListener l = canvas.getBrushListener();
+		l.draw(g);
 	}
 	
 	abstract public void draw(Graphics g);

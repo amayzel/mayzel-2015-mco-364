@@ -55,6 +55,10 @@ public class Canvas extends JPanel {
 	public void setBrushListener(BrushListener listener) {
 		this.listener = listener;
 	}
+	
+	public BrushListener getBrushListener(){
+		return listener;
+	}
 
 
 }
