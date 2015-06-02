@@ -1,4 +1,4 @@
-package Smile;
+package mayzel.smile;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

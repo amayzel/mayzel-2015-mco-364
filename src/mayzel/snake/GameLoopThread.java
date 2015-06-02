@@ -1,4 +1,4 @@
-package snake;
+package mayzel.snake;
 
 public class GameLoopThread extends Thread {
 

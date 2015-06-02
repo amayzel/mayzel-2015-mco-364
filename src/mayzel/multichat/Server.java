@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import network.SocketThread;
+import mayzel.network.SocketThread;
 
 public class Server implements ReaderListener{
 

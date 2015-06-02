@@ -1,4 +1,4 @@
-package network;
+package mayzel.network;
 
 import java.io.IOException;
 import java.net.ServerSocket;

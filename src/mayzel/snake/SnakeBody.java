@@ -1,4 +1,4 @@
-package snake;
+package mayzel.snake;
 
 import java.awt.Point;
 import java.util.LinkedList;
